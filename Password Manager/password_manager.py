@@ -20,7 +20,7 @@ def load_key():
     return key
 
 # mpwd = input("What is the master password?\n: ")  #? You don't need to you use mpwd because I don't know how to use it properly
-mpwd = 1234
+mpwd = "12345"
 
 key = load_key() + mpwd.encode()  # since key in bytes than mpwd also have to be in bytes
 

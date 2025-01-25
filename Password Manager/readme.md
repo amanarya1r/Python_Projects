@@ -2,8 +2,7 @@
 
 It's a simple passowrd managing python script which will allow:
     1. adding a password
-    2. deleting a password
-    3. see the password 
+    2. see the password 
 
 Encryption of text file is possible due to **cryptography** module called as **Fernet**
 ```python
@@ -30,6 +29,5 @@ it is in byte string, compare to this which is in normal string
 - *.encode()* to change from normal string to byte string
   
 How password_manager.py script works:
-
 
 
