@@ -11,4 +11,5 @@ Rolling the dice is a user choice and how many times he want to roll the dice al
     3. If they stop there turn there score get added to there respective score variable
     4. if score variable reaches or above than 50 then that user become winner of that game
 
-![PIG flowchart drawio](https://github.com/user-attachments/assets/e16830f2-d422-418f-aa71-fdb4e73b8862)
+
+![PIG flowchart drawio](https://github.com/user-attachments/assets/278a6ea7-48c3-4055-8a8c-b92a7df0ce2d)
