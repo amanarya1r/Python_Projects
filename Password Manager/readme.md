@@ -30,4 +30,5 @@ it is in byte string, compare to this which is in normal string
   
 How password_manager.py script works:
 
+![YUY 2025-01-25 17 45 19](https://github.com/user-attachments/assets/9bf615d5-1d70-4dd1-8c2b-ab451ba58d5b)
 
