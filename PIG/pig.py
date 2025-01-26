@@ -7,3 +7,4 @@ def roll():
     roll = random.randint(min_value, max_value)
     return roll
 
+class 
