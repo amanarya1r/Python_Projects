@@ -12,4 +12,4 @@ Rolling the dice is a user choice and how many times he want to roll the dice al
     4. if score variable reaches or above than 50 then that user become winner of that game
 
 
-![PIG flowchart drawio](https://github.com/user-attachments/assets/278a6ea7-48c3-4055-8a8c-b92a7df0ce2d)
+![PIG flowchart drawio](pigFlowchart.svg)
