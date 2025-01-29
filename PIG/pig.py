@@ -1,5 +1,7 @@
 import random
 import os
+import re
+from pynput import keyboard
 
 # =============================== #
 bold = '\033[1m'
@@ -16,7 +18,7 @@ blue = '\033[34m'
 cyan = '\033[36m'
 # =============================== #
 
-palyers = {}
+players = {}
 
 def clear():
     # for windows
@@ -26,11 +28,21 @@ def clear():
     else:
         os.system('clear')
 
+def quitTerminal(key):
+    if key.char == 'q':
+        exit()
+    
+
 def TerminalTop(x):
     if x == 1:
-        print(f"{red}{bold}Note:{reset} {underline}{red}{italic}Please enter a valid number between '2' to '6' or 'q' to quit!{reset}\n")
+        print(f"{red}{bold}Note:{reset} {underline}{red}{italic}Please enter a valid number between '2' to '6' or press 'q' to quit!{reset}\n")
     elif x == 2:
-        print(f"{red}{bold}Note:{reset} {underline}{red}{italic}Please enter a 'y' for yes and 'n' for no!{reset}\n")
+        print(f"{red}{bold}Note:{reset} {underline}{red}{italic}Please enter or press a 'y' for yes and 'n' for no!{reset}\n")
+    elif x == 3:
+        clear()
+        print(f"{red}{bold}Note:{reset} {underline}{red}{italic}Please enter a name without symbols[!, @, $, ., ,, _, *, etc] and spaces!{reset}\n")
+    elif x == 4:
+        print(f'{dim}{red}Please enter a valid input{reset}')
 
 
 
@@ -41,53 +53,62 @@ def start():
         
         print(reset)
 
+        key = keyboard.Listener()
+
         playerNum = int(playerInput if playerInput.isdigit() else 0)
         
-        if playerNum > 1 and playerNum < 7:
+        if 2 <= playerNum <= 6:
             print('you have entered correct number\n')
             return playerNum
-        elif playerInput == 'q':
-            break
+        elif playerInput == 'q' or key.char == 'q':
+            exit()
         else:
-            print(f'{dim}{red}Please enter a valid input{reset}')
+            TerminalTop(4)
 
-# def NamingPlayer(playerNum):
-#     namePlayers = (input(f'Would you like to add player names: {blue}')).tolower()
-#     print(reset)
-#     for i in playerNum:
-#         if namePlayers == 'y':
-#             players.player[i].name.append = input(f'player{i}: {cyan}')
-#             players.player[i].score.append
-#         elif namePlayers == 'n':
-#             players.player[i].name.append = player[i]
 
-players = {}
-
-playerNum = 5
 
 def NamingPlayer(playerNum):
-    namePlayers = input('Would you like to add player names? (y/n): ').lower()
-    
-    for i in range(playerNum):
-        if i not in players:
-            players[i] = {"name": [], "score": []}  # Initialize dictionary structure
+    while True:
+        TerminalTop(2)
+        namePlayers = (input(f'Would you like to add player names: {blue}')).lower()
+        print(reset)
+
+        if namePlayers == 'y' or namePlayers == 'n':
+            for i in range(playerNum):
+                j = i+1
+                if namePlayers == 'y':
+                    TerminalTop(3)
+                    while True:
+                        playerName = input(f'player{j}: {cyan}')
+                        print(reset)
+
+                        if re.search(r"[^a-zA-Z0-9]", playerName):
+                            TerminalTop(4)
+                        else:
+                            break
+
+                    players[f"player_{playerName}"] = {"name": '', "score": 0}
+                    players[f"player_{playerName}"]["name"] = playerName
+
+                elif namePlayers == 'n':
+                    players[f"player{j}"] = {"name": '', "score": 0} 
+                    players[f"player{j}"]["name"] = (f"player{j}")
+
+            return players
         
-        if namePlayers == 'y':
-            player_name = input(f'Enter name for player {i}: ')
-            players[i]["name"].append(player_name)
-            players[i]["score"].append(0)
-        elif namePlayers == 'n':
-            players[i]["name"].append(f'player{i}')
-            players[i]["score"].append(0)
         else:
-            print("Invalid input. Please enter 'y' or 'n'.")
+            print(f'{dim}{red}Please enter a valid input{reset}\n')
 
 
-NamingPlayer(playerNum)
-print(players)
+print(NamingPlayer(start()))
 
 
 
+# # Start listening for key events
+# keyboard.on_press(on_key_event)
+
+# # Keep the program running
+# keyboard.wait('esc')  # Exits when 'Esc' is pressed
 
 
 def roll():
