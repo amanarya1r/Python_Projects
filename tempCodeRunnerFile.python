@@ -1,54 +1,33 @@
 from pynput import keyboard
 
-import threading
+# Global variable to control listener
+exit_flag = False
 
-exitFlag = False  # Global flag to track exit state
-
-def quitTerminal(key):
-    """Handles key press and exits if 'q' or 'Q' is pressed."""
-    global exitFlag
+def on_press(key):
+    global exit_flag
     try:
-        if key.char.lower() == 'q':  # Case insensitive check
-            print("\nExiting...")
-            exitFlag = True
-            exit()  # Exit the program immediately
-    except AttributeError:
-        pass  # Handles non-character keys (e.g., Shift, Ctrl)
-
-def get_player_input():
-    """Handles user input in a separate thread to prevent blocking."""
-    global exitFlag
-    while not exitFlag:  # Continue looping unless 'q' is pressed
-        playerInput = input('Number of players: ')
-
-        if exitFlag:  # If 'q' was pressed during input, stop
-            break  
-
-        if playerInput.isdigit():
-            playerNum = int(playerInput)
-            if 2 <= playerNum <= 6:
-                print('You have entered the correct number.\n')
-                exitFlag = True  # Stop the loop since valid input is received
-                return playerNum
-            else:
-                print("Invalid input. Please enter a number between 2 and 6.")
+        if key.char == 'q':  # Check for 'q' press to exit
+            print("Exiting...")
+            exit_flag = True  # Set flag to exit listener
+            return False  # Stop listener
         else:
-            print("Please enter a valid number.")
+            print(f"Key {key.char} pressed.")
+    except AttributeError:
+        pass  # For special keys like shift, ctrl, etc.
 
-    print("Program terminated.")
+def wait_for_key():
+    print("Press any key to continue or 'q' to quit...")
+    
+    # Start listener and block until 'q' is pressed
+    with keyboard.Listener(on_press=on_press) as listener:
+        listener.join()  # Block execution until listener is stopped
 
-def start():
-    """Starts the keyboard listener and input handling in parallel."""
-    global exitFlag
-    exitFlag = False
+    # Check if exit flag was set
+    if exit_flag:
+        print("Game is exiting...")
+    else:
+        print("Key pressed, continuing the game...")
 
-    # Start the keyboard listener in a separate thread
-    listener = keyboard.Listener(on_press=quitTerminal)
-    listener.daemon = True  # Ensures it stops when the main thread exits
-    listener.start()
-
-    # Start the input function in the main thread
-    get_player_input()
-
-# Run the function
-start()
+# Example Usage
+wait_for_key()  # Blocks until a key is pressed
+print("Game is starting...")  # This will print only after the listener is stopped
