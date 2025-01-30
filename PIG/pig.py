@@ -18,6 +18,8 @@ blue = '\033[34m'
 cyan = '\033[36m'
 # =============================== #
 
+exitFlag = False
+
 players = {}
 
 def clear():
@@ -28,14 +30,9 @@ def clear():
     else:
         os.system('clear')
 
-def quitTerminal(key):
-    if key.char == 'q':
-        exit()
-    
-
 def TerminalTop(x):
     if x == 1:
-        print(f"{red}{bold}Note:{reset} {underline}{red}{italic}Please enter a valid number between '2' to '6' or press 'q' to quit!{reset}\n")
+        print(f"{red}{bold}Note:{reset} {underline}{red}{italic}Please enter a valid number between '2' to '6' or 'q' to quit!{reset}\n")
     elif x == 2:
         print(f"{red}{bold}Note:{reset} {underline}{red}{italic}Please enter or press a 'y' for yes and 'n' for no!{reset}\n")
     elif x == 3:
@@ -48,19 +45,20 @@ def TerminalTop(x):
 
 def start():
     TerminalTop(1)
+    global exitFlag
+    exitFlag = True
     while True:
         playerInput = input(f'Number of players: {blue}')
         
         print(reset)
 
-        key = keyboard.Listener()
-
         playerNum = int(playerInput if playerInput.isdigit() else 0)
         
-        if 2 <= playerNum <= 6:
+        if playerNum > 1 and playerNum < 7:
             print('you have entered correct number\n')
+            exitFlag = False
             return playerNum
-        elif playerInput == 'q' or key.char == 'q':
+        elif playerInput == 'q':
             exit()
         else:
             TerminalTop(4)
@@ -102,13 +100,6 @@ def NamingPlayer(playerNum):
 
 print(NamingPlayer(start()))
 
-
-
-# # Start listening for key events
-# keyboard.on_press(on_key_event)
-
-# # Keep the program running
-# keyboard.wait('esc')  # Exits when 'Esc' is pressed
 
 
 def roll():

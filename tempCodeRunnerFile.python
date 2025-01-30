@@ -1,0 +1,54 @@
+from pynput import keyboard
+
+import threading
+
+exitFlag = False  # Global flag to track exit state
+
+def quitTerminal(key):
+    """Handles key press and exits if 'q' or 'Q' is pressed."""
+    global exitFlag
+    try:
+        if key.char.lower() == 'q':  # Case insensitive check
+            print("\nExiting...")
+            exitFlag = True
+            exit()  # Exit the program immediately
+    except AttributeError:
+        pass  # Handles non-character keys (e.g., Shift, Ctrl)
+
+def get_player_input():
+    """Handles user input in a separate thread to prevent blocking."""
+    global exitFlag
+    while not exitFlag:  # Continue looping unless 'q' is pressed
+        playerInput = input('Number of players: ')
+
+        if exitFlag:  # If 'q' was pressed during input, stop
+            break  
+
+        if playerInput.isdigit():
+            playerNum = int(playerInput)
+            if 2 <= playerNum <= 6:
+                print('You have entered the correct number.\n')
+                exitFlag = True  # Stop the loop since valid input is received
+                return playerNum
+            else:
+                print("Invalid input. Please enter a number between 2 and 6.")
+        else:
+            print("Please enter a valid number.")
+
+    print("Program terminated.")
+
+def start():
+    """Starts the keyboard listener and input handling in parallel."""
+    global exitFlag
+    exitFlag = False
+
+    # Start the keyboard listener in a separate thread
+    listener = keyboard.Listener(on_press=quitTerminal)
+    listener.daemon = True  # Ensures it stops when the main thread exits
+    listener.start()
+
+    # Start the input function in the main thread
+    get_player_input()
+
+# Run the function
+start()

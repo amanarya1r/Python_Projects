@@ -1,6 +1,2 @@
-
-# # Start listening for key events
-# keyboard.on_press(on_key_event)
-
-# # Keep the program running
-# keyboard.wait('esc')  # Exits when 'Esc' is pressed
+listenKey = keyboard.Listener(on_press=quitTerminal)
+listenKey.start()
