@@ -47,6 +47,8 @@ def print_dice_face(dots):
     print(dice_face)
 
 
-for i in range(1, 7):
-    print_dice_face(i)
-    # print("\n")  # Add a newline between faces
+# for i in range(1, 7):
+#     print_dice_face(i)
+#     # print("\n")  # Add a newline between faces
+
+print_dice_face(5)
