@@ -124,12 +124,16 @@ def TerminalTop(x):
         clear(0)
         print(f"{red}{underline}{bold}Note:{reset} {red}{italic}Please press a 'y' for yes or 'n' for no or 'q' for quit!{reset}\n")
 
+    elif x == 8:
+        clear(0)
+        print(f"{red}{underline}{bold}Note:{reset} {red}{italic}Please press a 'y' for yes or 'n' for no or 'l' for leadership board!{reset}\n")
+
 
 
 def keyPressed():
     while True:
         key_event = keyboard.read_event(suppress=True) 
-        
+    
         if key_event.event_type == "down": 
             press_key = key_event.name.lower()  
             print(f"{blue}{bold}You pressed: {yellow}{italic}{press_key}{reset}\n")
@@ -142,9 +146,11 @@ def keyPressed():
                 return 'n'
             elif press_key == 'r' and rulesGuide:
                 rules()
+            elif press_key == 'l':
+                return 'l'
             else:
                 return None
-            
+                
         
 
 def rules():
@@ -166,18 +172,28 @@ def rules():
         start_again = keyPressed()
         if start_again == 'y':
             False
-            return startingPoint()
+            return startingPoint(1)
         elif start_again == 'n':
             TerminalTop(5)
             exit()
         else:
             TerminalTop(4)
-
     
 
 
-def startTerminal():
+def txtRead():
+    clear(0)
+    with open('leadership_board.txt', 'r') as rd:
+        for line in rd.readlines():
+            text = line.rstrip()
+            date, name, score = text.split("|")
+            print(f"{bold}{date}{reset}   {italic}{blue}{name}{reset}   {bold}{yellow}{score}{reset}")
+        
+    exit()
 
+
+
+def startTerminal():
     TerminalTop(0)
     TerminalTop(1)
     while True:
@@ -189,7 +205,7 @@ def startTerminal():
         
         if playerNum > 1 and playerNum < 7:
             print('you have entered correct number\n')
-            return playerNum
+            return NamingPlayer(playerNum)
         elif playerInput == 'q':
             exit()
         else:
@@ -228,7 +244,7 @@ def NamingPlayer(playerNum):
                     players[f"player{j}"] = {"name": '', "score": 0} 
                     players[f"player{j}"]["name"] = (f"player{j}")
 
-            return players
+            return playing(players)
         
         else: 
             print(f'{dim}{red}Please enter a valid input{reset}\n')
@@ -265,6 +281,23 @@ def roll():
     roll = random.randint(min_value, max_value)
     return roll
 
+def restartAgain():
+    TerminalTop(8)
+    print(f"{italic}{blue}Want to play again? or do you want to see leadership board:   ", end='')
+    keyReg = keyPressed()
+    if keyReg == 'y':
+        TerminalTop(2)
+        print(f"{bold}{italic}Play with new players else or same players?:   ", end='')
+        if keyPressed() == 'y':
+            startingPoint(1)
+        elif keyPressed() == 'n':
+            startingPoint(2)
+    elif keyReg == 'l':
+        txtRead()
+    else:
+        exit()
+    
+
 
 def playing(players):
     global exitFlag
@@ -287,17 +320,23 @@ def playing(players):
                 diceAnimation(diceFace, name_of_player)
 
                 print(f"{magenta}You got: {yellow}{bold}{diceFace}{reset}\n")
-                if diceFace == 1:
-                    print(f"{red}{bold}Oh no! You got 1\n{italic}Your socre is now zero{reset}\n{bold}{underline}Turn over! {cyan}Shifting to next player...{reset}")
+                if diceFace == 0:
+                    print(f"{red}{bold}Oh no! {players[player]['name']}, you got 1\n\n{italic}Your socre is now zero{reset}\n\n{bold}{underline}Turn over!\n {cyan}Shifting to next player...{reset}")
                     players[player]['score'] = 0
                     time.sleep(2)
                     break
                 else:
                     players[player]['score'] += diceFace
-                    print(f"{underline}Your current score is:{reset} {yellow}{bold}{players[player]['score']}{reset}\n")
+                    print(f"{underline}{players[player]['name']} current score is:{reset} {yellow}{bold}{players[player]['score']}{reset}\n")
                 
                 if players[player]['score'] >= 50:
                     print(f"{green}{bold}🎉🎊 Congratualtions 🎊🎉\n{reset}{cyan}{italic}You won the game!!!{reset}")
+                    current_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+
+                    with open('leadership_board.txt', 'a') as txt:
+                        txt.write(str(current_time) + "|" + players[player]['name'] + "|" + str(players[player]['score']) + "\n")
+                    
+                    restartAgain()
                     return
 
             elif diceRolled == 'n':
@@ -310,8 +349,14 @@ def playing(players):
         
 
 
+def startingPoint(choose):
+    if choose == 1:
+        startTerminal()
+    elif choose == 2:
+        for playerz in players:
+            players[playerz]['score'] = 0
 
-def startingPoint():
-    playing(NamingPlayer(startTerminal()))
+        playing(players)
 
-startingPoint()
+startingPoint(1)
+
