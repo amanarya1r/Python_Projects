@@ -125,7 +125,7 @@ def TerminalTop(x):
         print(f"{red}{underline}{bold}Note:{reset} {red}{italic}Please press a 'y' for yes or 'n' for no or 'q' for quit!{reset}\n")
 
     elif x == 8:
-        print(f"{red}{underline}{bold}Note:{reset} {red}{italic}Please press a 'y' for yes or 'n' for no or 'l' for leadership board!{reset}\n")
+        print(f"\n{red}{underline}{bold}Note:{reset} {red}{italic}Please press a 'y' for yes or 'n' for no or 'l' for leadership board!{reset}\n")
 
 
 
@@ -153,12 +153,13 @@ def keyPressed():
         
 
 def rules():
+    global exitFlag
+    exitFlag = False
     global rulesGuide
     rulesGuide = False
-    clear(1)
     TerminalTop(2)
     print(f"{bold}{underline}{yellow}PI-G (Play it Greedy) is a multiplayer dice game.{reset}")
-    print(f"{italic}\nThe whole concept of is that user allow to roll the dice as much as they wanted and there score will only but at a cost of loosing it all if they get '1'.{reset}")
+    print(f"{italic}\nThe whole concept of this game is to allow user to roll the dice as much \nas they wanted, until they hit '1' and loose it all.{reset}")
     print(f"{bold}{red}\nRules:{reset}")
     print(f"1. First enter the number of players.")
     print(f"2. Decide whether you guys want to add your name or not.")
@@ -176,19 +177,20 @@ def rules():
             TerminalTop(5)
             exit()
         else:
-            print(f"{green}{italic}\n\nWound like to play now?: ", end='', flush=True)
             TerminalTop(4)
+            print(f"{green}{italic}\n\nWound like to play now?: ", end='', flush=True)
     
 
 
 def txtRead():
     clear(0)
+    print(f"\n{green}{bold}{italic}{underline}Leadership Board:\n{reset}")
     with open('leadership_board.txt', 'r') as rd:
         for line in rd.readlines():
             text = line.rstrip()
             date, name, score = text.split("|")
             print(f"{bold}{date}{reset}   {italic}{blue}{name}{reset}   {bold}{yellow}{score}{reset}")
-        
+    print('\n')    
     exit()
 
 
@@ -247,8 +249,8 @@ def NamingPlayer(playerNum):
             return playing(players)
         
         else: 
-            print(f'\nWould you like to add player names: {blue}', end='', flush=True)
             TerminalTop(4)
+            print(f'\nWould you like to add player names: {blue}', end='', flush=True)
 
 
 
@@ -284,29 +286,49 @@ def roll():
 
 def restartAgain(winner_name):
     TerminalTop(8)
-    print(f"{green}{bold}\n\n🎉🎊 Congratualtions 🎊🎉\n\n{reset}{cyan}{italic}{winner_name} on winning the game!!!{reset}\n\n")
-    print(f"{italic}{blue}Do you want to play again? or quit or want to see leadership board:   ", end='', flush=True)
+    if winner_name != '0':
+        print(f"{green}{bold}\n🎉🎊 Congratualtions 🎊🎉\n\n{reset}{cyan}{italic}{winner_name} on winning the game!!!{reset}\n\n")
+        print(f"{italic}{blue}Do you want to play again? or quit or want to see leadership board:   ", end='', flush=True)
 
-    while True:
-        keyReg = keyPressed()
-        if keyReg == 'y':
-            while True:
-                TerminalTop(2)
-                print(f"{bold}{italic}Play with new players else or same players?:   ", end='', flush=True)
-                key2choose = keyPressed()
-                if key2choose == 'y':
-                    return startingPoint(1)
-                elif key2choose == 'n':
-                    return startingPoint(2)
-                else: 
-                    TerminalTop(4)
-        elif keyReg == 'l':
-            txtRead()
-        else:
-            print(f"\n{italic}{blue}Do you want to play again? or quit or want to see leadership board:   ", end='', flush=True)
-            TerminalTop(4)
+        while True:
+            keyReg = keyPressed()
+            if keyReg == 'y':
+                while True:
+                    TerminalTop(2)
+                    print(f"{bold}{italic}Play with new players else or same players?:   ", end='', flush=True)
+                    key2choose = keyPressed()
+                    if key2choose == 'y':
+                        return startingPoint(1)
+                    elif key2choose == 'n':
+                        return startingPoint(2)
+                    else: 
+                        TerminalTop(4)
+            elif keyReg == 'l':
+                txtRead()
+            else:
+                TerminalTop(4)
+                print(f"\n{italic}{blue}Do you want to play again? or quit or want to see leadership board:   ", end='', flush=True)
+    else: 
+        TerminalTop(2)
+        print(f"{italic}{blue}Do you want to play again? or quit or want to see leadership board:   ", end='', flush=True)
 
-    
+        while True:
+            keyReg = keyPressed()
+            if keyReg == 'y':
+                while True:
+                    TerminalTop(2)
+                    print(f"{bold}{italic}Play with new players else or same players?:   ", end='', flush=True)
+                    key2choose = keyPressed()
+                    if key2choose == 'y':
+                        return startingPoint(1)
+                    elif key2choose == 'n':
+                        return startingPoint(2)
+                    else: 
+                        TerminalTop(4)
+            else:
+                TerminalTop(4)
+                print(f"\n{italic}{blue}Do you want to play again? or quit or want to see leadership board:   ", end='', flush=True)
+        
 
 
 def playing(players):
@@ -330,7 +352,7 @@ def playing(players):
                 diceAnimation(diceFace, name_of_player)
 
                 print(f"{magenta}You got: {yellow}{bold}{diceFace}{reset}\n")
-                if diceFace == 0:
+                if diceFace == 1:
                     print(f"{red}{bold}Oh no! {players[player]['name']}, you got 1\n\n{italic}Your socre is now zero{reset}\n\n{bold}{underline}Turn over!\n {cyan}Shifting to next player...{reset}")
                     players[player]['score'] = 0
                     time.sleep(2)

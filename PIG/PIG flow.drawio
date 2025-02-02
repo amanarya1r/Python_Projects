@@ -1,10 +1,10 @@
 <mxfile host="65bd71144e">
     <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
-        <mxGraphModel dx="1002" dy="563" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" background="none" math="0" shadow="0">
+        <mxGraphModel dx="1002" dy="296" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" background="none" math="0" shadow="0">
             <root>
                 <mxCell id="WIyWlLk6GJQsqaUBKTNV-0"/>
                 <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0"/>
-                <mxCell id="TiLkEybxs9c5vroeXgTj-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" edge="1">
+                <mxCell id="TiLkEybxs9c5vroeXgTj-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" edge="1" source="TiLkEybxs9c5vroeXgTj-70">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="554.5" y="80" as="sourcePoint"/>
                         <mxPoint x="554.5" y="140" as="targetPoint"/>
@@ -145,7 +145,7 @@
                     <mxGeometry x="371.38" y="1080" width="91.25" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="TiLkEybxs9c5vroeXgTj-70" value="start" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
-                    <mxGeometry x="494.5" y="10" width="120" height="80" as="geometry"/>
+                    <mxGeometry x="617" y="10" width="120" height="80" as="geometry"/>
                 </mxCell>
                 <mxCell id="TiLkEybxs9c5vroeXgTj-71" value="stop" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;gradientColor=#ea6b66;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
                     <mxGeometry x="525.75" y="380" width="57.5" height="40" as="geometry"/>
@@ -210,12 +210,14 @@
                 <mxCell id="Jtrg5eetVvwyfk46_zp6-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="Jtrg5eetVvwyfk46_zp6-3" target="Jtrg5eetVvwyfk46_zp6-4" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="Jtrg5eetVvwyfk46_zp6-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="Jtrg5eetVvwyfk46_zp6-3" target="TiLkEybxs9c5vroeXgTj-70" edge="1">
+                <mxCell id="Jtrg5eetVvwyfk46_zp6-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="Jtrg5eetVvwyfk46_zp6-3" target="1" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
                             <mxPoint x="277" y="1218"/>
                             <mxPoint x="277" y="50"/>
+                            <mxPoint x="320" y="50"/>
                         </Array>
+                        <mxPoint x="310" y="50" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="Jtrg5eetVvwyfk46_zp6-3" value="Ask if player want to play again or see previous winners or quit" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
@@ -244,6 +246,19 @@
                 </mxCell>
                 <mxCell id="Jtrg5eetVvwyfk46_zp6-12" value="y for yes" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
                     <mxGeometry x="200" y="1130" width="70" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="0" value="l for &lt;br&gt;previous&lt;br&gt;winner" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+                    <mxGeometry x="345" y="1270" width="70" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="1" target="TiLkEybxs9c5vroeXgTj-94">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="555" y="50"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="1" value="User asked if &lt;br&gt;they want to play again with same players or new players" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#ffff88;strokeColor=#36393d;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+                    <mxGeometry x="312" y="5" width="210" height="90" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>

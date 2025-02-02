@@ -12,4 +12,11 @@ Rolling the dice is a user choice and how many times he want to roll the dice al
     4. if score variable reaches or above than 50 then that user become winner of that game
 
 
-![PIG flowchart drawio](pigFlowchart.svg)
+![PIG flowchart drawio](pigFlow.svg)
+
+**Note:** *All controls keys are already mentioned in the game inside a '**Note**' which in bold, underline and in red color after the game logo.* 
+- eg:
+![Note](noteImg.PNG)
+
+## Gameplay of PIG:
+![PIG gameplay](gameplay.gif)
