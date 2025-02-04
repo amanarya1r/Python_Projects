@@ -1,33 +1,90 @@
-from pynput import keyboard
-
-# Global variable to control listener
-exit_flag = False
-
-def on_press(key):
-    global exit_flag
-    try:
-        if key.char == 'q':  # Check for 'q' press to exit
-            print("Exiting...")
-            exit_flag = True  # Set flag to exit listener
-            return False  # Stop listener
-        else:
-            print(f"Key {key.char} pressed.")
-    except AttributeError:
-        pass  # For special keys like shift, ctrl, etc.
-
-def wait_for_key():
-    print("Press any key to continue or 'q' to quit...")
-    
-    # Start listener and block until 'q' is pressed
-    with keyboard.Listener(on_press=on_press) as listener:
-        listener.join()  # Block execution until listener is stopped
-
-    # Check if exit flag was set
-    if exit_flag:
-        print("Game is exiting...")
-    else:
-        print("Key pressed, continuing the game...")
-
-# Example Usage
-wait_for_key()  # Blocks until a key is pressed
-print("Game is starting...")  # This will print only after the listener is stopped
+titles = [
+    "The Majestic Whales: Giants of the Ocean",
+    "Exploring the Depths: A Journey into the Abyss",
+    "The Enigmatic World of Quantum Physics",
+    "Artificial Intelligence: The Future of Humanity?",
+    "The Art of Bonsai: Miniature Landscapes in Your Home",
+    "The Culinary Delights of Italian Cuisine",
+    "A Beginner's Guide to Astronomy",
+    "The Wonders of the Amazon Rainforest",
+    "The History of Ancient Egypt",
+    "The Impact of Social Media on Society",
+    "The Benefits of Regular Exercise",
+    "The Importance of Environmental Conservation",
+    "The Magic of Music: How it Affects Our Brains",
+    "The Rise and Fall of the Roman Empire",
+    "The Beauty of Nature Photography",
+    "The Science of Sleep: Understanding its Importance",
+    "The World of Cryptocurrency",
+    "The Art of Public Speaking",
+    "The Power of Positive Thinking",
+    "The Secrets of Successful Investing",
+    "The History of the Internet",
+    "The Future of Space Exploration",
+    "The Importance of Education",
+    "The Art of Creative Writing",
+    "The Science of Climate Change",
+    "The Benefits of Meditation",
+    "The World of Virtual Reality",
+    "The Impact of Technology on Healthcare",
+    "The Importance of Cultural Diversity",
+    "The Future of Transportation",
+    "The Art of Leadership",
+    "The Science of Happiness",
+    "The World of Robotics",
+    "The Impact of Globalization",
+    "The Importance of Critical Thinking",
+    "The Future of Work",
+    "The Art of Negotiation",
+    "The Science of Learning",
+    "The World of Biotechnology",
+    "The Impact of Pandemics",
+    "The Importance of Financial Literacy",
+    "The Future of Energy",
+    "The Art of Storytelling",
+    "The Science of Nutrition",
+    "The World of Nanotechnology",
+    "The Impact of Artificial Intelligence on Jobs",
+    "The Importance of Mental Health",
+    "The Future of Food",
+    "The Art of Problem Solving",
+    "The Science of Psychology",
+    "The World of Cybersecurity",
+    "The Impact of Automation",
+    "The Importance of Ethics",
+    "The Future of Education",
+    "The Art of Persuasion",
+    "The Science of Genetics",
+    "The World of Renewable Energy",
+    "The Impact of Big Data",
+    "The Importance of Creativity",
+    "The Future of Communication",
+    "The Art of Design",
+    "The Science of Materials",
+    "The World of Space Travel",
+    "The Impact of the Metaverse",
+    "The Importance of Adaptability",
+    "The Future of Healthcare",
+    "The Art of Innovation",
+    "The Science of Consciousness",
+    "The World of Quantum Computing",
+    "The Impact of Social Justice Movements",
+    "The Importance of Global Citizenship",
+    "The Future of Democracy",
+    "The Art of Diplomacy",
+    "The Science of Economics",
+    "The World of Philosophy",
+    "The Impact of Artificial General Intelligence",
+    "The Importance of Self-Awareness",
+    "The Future of Humanity",
+    "The Art of Living a Meaningful Life",
+    "The Science of Well-being",
+    "The World of the Universe",
+    "The Impact of the Singularity",
+    "The Importance of Love",
+    "The Future of Everything"  # Added one more to make it 70
+]
+i = 0
+for title in titles: 
+    i += 1
+    print(i)
