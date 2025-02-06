@@ -225,7 +225,7 @@ def create_markdown(filesNum):
             f.write(f"tags = {selected_tags}\n")
             f.write("+++\n\n")  # Add a newline after the frontmatter
             # You can add more content to the file here if you want
-            f.write("Your post content goes here...\n") # Example content
+            # f.write("Your post content goes here...\n") # Example content
 
         print(f'Created {filename} with date: {date_str}, title: {title}, tags: {selected_tags}')
 
