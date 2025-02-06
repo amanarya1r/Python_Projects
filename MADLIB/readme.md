@@ -5,3 +5,4 @@ MADLIB is a single player game also, user can save there story if they like.
 
 
 Important note: There is no meaning of word MADLIB, its just catchy.
+Please remember that to run this game first you need to have python library 'pyttsx3' install on your machine
