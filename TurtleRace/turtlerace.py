@@ -3,19 +3,19 @@ import time
 import random
 
 WIDTH, HEIGHT = 500, 500
-COLORS = ['red', 'green', 'pink', 'blue', 'orange', 'yellow', 'purple', 'black', 'cyan', 'cyan']
+COLORS = ['red', 'green', 'pink', 'blue', 'orange', 'yellow', 'purple', 'black', 'cyan', 'brown', 'grey']
 
 def get_number_of_racers():
-    racers = 0
+    racersx = 0
     while True:
-        racers = input("Enter the numer of racers (2-10) or 'q' to quit: ")
-        if racers.isdigit():
-            racers = int(racers)
-            if 2 <= racers <= 10:
-                return racers
+        racersx = input("Enter the numer of racers (2-10) or 'q' to quit: ")
+        if racersx.isdigit():
+            racersx = int(racersx)
+            if 2 <= racersx <= 10:
+                return racersx
             else:
                 print("The given input is out of range! Please enter a number between 2 to 10.")
-        elif racers == 'q':
+        elif racersx == 'q':
             exit()
         else:
             print("Please entere a valid input!")
@@ -42,7 +42,7 @@ def init_turtle():
 racers = get_number_of_racers()
 init_turtle()
 
-random.shuffle(COLORS) # it will  shuffle the colors by which it become more randomly placed aroudn the list
+random.shuffle(COLORS) # it will  shuffle the colors by which it become more randomly placed around the list
 colors = COLORS[:racers]
 
 # racer = turtle.Turtle() # it create drawn object on the canvas
