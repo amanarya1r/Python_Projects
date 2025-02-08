@@ -8,3 +8,8 @@ Turtle racing uses a resolution of 500x500. The very middle of the game canvas i
 
 When turtle run on the screen than it leaves a line which is called pen.
 To remove the residue line by using '.penup' property.
+
+Turtle run on x direction the fastest turtle wins the race. 
+
+Here is how the game works:
+![Turtle Racing](turtleracing.gif)

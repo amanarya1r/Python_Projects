@@ -8,3 +8,5 @@ print(f"""
     {light_gray}| $$ \/  | $$ {dark_gray}| $$  | $$ {olive}| $$$$$$$/ {cyan}| $$$$$$$$ {blue}/$$$$$${red}| $$$$$$$/ 
     {light_gray}|__/     |__/ {dark_gray}|__/  |__/ {olive}|_______/ {cyan}|________/{blue}|______/ {red}|_______/  {reset}
 """)
+
+

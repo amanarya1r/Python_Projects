@@ -2,7 +2,7 @@ import turtle
 import time
 import random
 
-WIDTH, HEIGHT = 500, 500
+WIDTH, HEIGHT = 800, 500
 COLORS = ['red', 'green', 'pink', 'blue', 'orange', 'yellow', 'purple', 'black', 'cyan', 'brown', 'grey']
 
 def get_number_of_racers():
@@ -20,18 +20,33 @@ def get_number_of_racers():
         else:
             print("Please entere a valid input!")
 
+def race(colors):
+    racingTurtle = create_turtles(colors)
+    while True:
+        for racer in racingTurtle:
+            distancex = random.randrange(1,20)
+            racer.forward(distancex)
+            x, y = racer.pos()
+            k = -WIDTH // 2 + 10
+            if x <= k:
+                return colors[racingTurtle.index(racer)]
+
+
+
 def create_turtles(colors):
     turtles = []
-    spacingx = WIDTH // (len(colors) + 1)
+    spacingy = HEIGHT // (len(colors) + 1)
     for i, color in enumerate(colors):
         racer = turtle.Turtle()
         racer.color(color )
         racer.shape('turtle')
-        racer.left(90) # it will move the turtle upwards
-        racer.penup()
-        racer.setpos()
+        racer.left(180) # it will move the turtle upwards
+        racer.penup() 
+        racer.setpos(WIDTH//2 - 40, -HEIGHT//2 + (i + 1) *  spacingy) # for floor division use //
         racer.pendown()
         turtles.append(racer)
+
+    return turtles
 
 def init_turtle():
     screen = turtle.Screen() # Describe screen for turtle modules
@@ -46,4 +61,6 @@ random.shuffle(COLORS) # it will  shuffle the colors by which it become more ran
 colors = COLORS[:racers]
 
 # racer = turtle.Turtle() # it create drawn object on the canvas
-create_turtles(colors)
+winner = race(colors)
+print(f"The Winner is: {winner}")
+time.sleep(5)
