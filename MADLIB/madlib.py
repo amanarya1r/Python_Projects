@@ -44,7 +44,7 @@ mlogo = f"""
 # Print the colored ASCII logo
 print(mlogo)
 
-def clearScreen(y):
+# def clearScreen(y):
     
 
 
